@@ -46,9 +46,9 @@
         const zips = this.input.split(/\n/);
 
         return zips.map(zip => {
-          const slice = zip.match(/-/) ? 8 : 7;
-          const zeroFilled = ('0000000' + zip).slice(slice * -1);
-          return zip.match(/-/) ? zeroFilled : zeroFilled.slice(0, 3) + '-' + zeroFilled.slice(3, 7);
+          const nonHyphen = zip.replace(/-/, '');
+          const zeroFilled = ('0000000' + nonHyphen).slice(-7);
+          return zeroFilled.slice(0, 3) + '-' + zeroFilled.slice(3, 7);
         });
       },
     },

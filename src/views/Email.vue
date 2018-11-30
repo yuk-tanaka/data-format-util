@@ -54,6 +54,8 @@
 </style>
 
 <script>
+  import emailRegex from '../helpers/emailRegex';
+
   export default {
     data() {
       return {
@@ -73,7 +75,7 @@
         }
 
         const emails = this.input.split(/\n/);
-        const regex = RegExp(/^([\w!#$%&'*+\-/=?^`{|}~]+(\.[\w!#$%&'*+\-/=?^`{|}~]+)*|"([\w!#$%&'*+\-/=?^`{|}~. ()<>[\]:;@,]|\\[\\"])+")@(([a-zA-Z\d-]+\.)+[a-zA-Z]+|\[(\d{1,3}(\.\d{1,3}){3}|IPv6:[\da-fA-F]{0,4}(:[\da-fA-F]{0,4}){1,5}(:\d{1,3}(\.\d{1,3}){3}|(:[\da-fA-F]{0,4}){0,2}))\])$/);
+        const regex = RegExp(emailRegex());
         const violations = emails.filter(email => !regex.test(email));
 
         return violations.length ? violations : ['RFC違反のメールアドレスは見つかりませんでした。'];
